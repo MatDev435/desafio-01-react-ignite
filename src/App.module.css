@@ -1,0 +1,73 @@
+.wrapper {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background: transparent;
+}
+
+.form {
+    margin-top: calc(0px - 1.5rem - 6px);
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0.5rem;
+}
+
+.form input {
+    padding: 1rem;
+    width: 100%;
+    border-radius: 8px;
+    background: var(--gray-500);
+    border: 0;
+    box-shadow: 0 2px 2px var(--gray-700);
+    color: var(--gray-100);
+}
+
+.form button {
+    background: var(--blue-700);
+    color: var(--gray-100);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px var(--gray-700);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.todoWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.todoStatus {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.todoStatus div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.todoStatus strong {
+    background: var(--gray-400);
+    padding: 0.5rem;
+    border-radius: 50%;
+}
