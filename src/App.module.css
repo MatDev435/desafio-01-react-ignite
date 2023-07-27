@@ -37,11 +37,17 @@
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 2px var(--gray-700);
+    cursor: pointer;
+    transition: background-color 0.2s;
 
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+}
+
+.form button:hover {
+    background: var(--blue-500);
 }
 
 .todoWrapper {
@@ -70,4 +76,9 @@
     background: var(--gray-400);
     padding: 0.5rem;
     border-radius: 50%;
+}
+
+.taskList {
+    margin-top: 1.5rem;
+    width: 100%;
 }

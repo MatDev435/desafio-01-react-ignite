@@ -1,0 +1,66 @@
+.task {
+    background: var(--gray-500);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1.5rem 1fr 1.5rem;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.task + .task {
+    margin-top: 0.75rem;
+}
+
+.checkbox {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: transparent;
+    border: 1px solid var(--gray-200);
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    border-color: var(--gray-100);
+}
+
+.checkbox[data-state='checked'] {
+    background: var(--purple-700);
+    border: 0;
+}
+
+.checkbox[data-state='checked']:hover {
+    background: var(--purple-500);
+}
+
+.checkboxIndicator {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: var(--gray-100);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete {
+    background: transparent;
+    border: 0;
+    color: var(--gray-200);
+    cursor: pointer;
+}
+
+.delete:hover {
+    color: var(--red-500);
+}
+
+.finished {
+    text-decoration: line-through;
+    color: var(--gray-300);
+}
