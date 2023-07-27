@@ -6,6 +6,7 @@ import { PlusCircle } from 'phosphor-react';
 
 import './global.css'
 import styles from './App.module.css';
+import { EmptyList } from './components/EmptyList';
 
 
 export function App() {
@@ -26,7 +27,29 @@ export function App() {
       content: taskName,
       finished: false
     }])
+
+    setTaskName('');
   }
+
+  function handleFinishTask(taskToUpdate: TaskType) {
+    const updatedTasks = tasks.filter(task => {
+      if(task.id === taskToUpdate.id) {
+        task.finished = !taskToUpdate.finished;
+      }
+      return task;
+    })
+
+    setTasks(updatedTasks);
+  }
+
+  function handleDeleteTask(taskToDelete: TaskType) {
+    const updatedTasks = tasks.filter(task => task.id !== taskToDelete.id)
+
+    setTasks(updatedTasks);
+  }
+
+  const isTaskNameEmpty = taskName.length === 0;
+  const tasksCount = tasks.length;
 
   return (
     <div>
@@ -42,7 +65,7 @@ export function App() {
             required
           />
 
-          <button type='submit'>
+          <button type='submit' disabled={isTaskNameEmpty}>
             Criar
             <PlusCircle size={16} />
           </button>
@@ -63,9 +86,20 @@ export function App() {
         </div>
 
         <div className={styles.taskList}>
-          {tasks.map(task => {
-            return <Task key={task.id} task={task} />
-          })}
+          {tasks.length > 0 ?
+            tasks.map(task => {
+              return (
+                <Task
+                  key={task.id}
+                  task={task}
+                  onFinishTask={handleFinishTask}
+                  onDeleteTask={handleDeleteTask}
+                />
+              )
+            })
+          :
+          <EmptyList />
+        }
         </div>
       </div>
     </div>

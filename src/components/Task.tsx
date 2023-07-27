@@ -11,16 +11,22 @@ export interface TaskType {
 
 interface TaskProps {
     task: TaskType;
+    onFinishTask: (task: TaskType) => void;
+    onDeleteTask: (task: TaskType) => void;
 }
 
-export function Task({ task }: TaskProps) {
-    function handleFinishTask() {
-        
+export function Task({ task, onFinishTask, onDeleteTask }: TaskProps) {
+    function handleFinishChange() {
+        onFinishTask(task);
+    }
+
+    function handleDeleteTask() {
+        onDeleteTask(task);
     }
 
     return (
         <div className={styles.task}>
-            <Checkbox.Root className={styles.checkbox} checked={task.finished}>
+            <Checkbox.Root className={styles.checkbox} onClick={handleFinishChange} checked={task.finished}>
                 <Checkbox.Indicator className={styles.checkboxIndicator}>
                     <Check size={16} />
                 </Checkbox.Indicator>
@@ -30,7 +36,7 @@ export function Task({ task }: TaskProps) {
                 {task.content}
             </p>
 
-            <button onClick={handleFinishTask} className={styles.delete}>
+            <button onClick={handleDeleteTask} className={styles.delete}>
                 <Trash size={24} />
             </button>
         </div>

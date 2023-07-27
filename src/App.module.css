@@ -46,8 +46,13 @@
     gap: 0.5rem;
 }
 
-.form button:hover {
+.form button:not(:disabled):hover {
     background: var(--blue-500);
+}
+
+.form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 .todoWrapper {
