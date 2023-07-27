@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import { Header } from './components/Header'
 import { Task, TaskType } from './components/Task';
@@ -12,6 +12,8 @@ import { EmptyList } from './components/EmptyList';
 export function App() {
   const [tasks, setTasks] = useState<TaskType[]>([]);
   const [taskName, setTaskName] = useState<string>('');
+  const [taskCount, setTaskCount] = useState<number>(0);
+  const [completedTasks, setCompletedTasks] = useState<number>(0);
 
   function handleTaskNameChange(event: ChangeEvent<HTMLInputElement>) {
     setTaskName(event.target.value);
@@ -48,8 +50,15 @@ export function App() {
     setTasks(updatedTasks);
   }
 
+  useEffect(() => {
+    setTaskCount(tasks.length);
+
+    const finishedTasks = tasks.filter(task => task.finished === true);
+
+    setCompletedTasks(finishedTasks.length);
+  }, [tasks])
+
   const isTaskNameEmpty = taskName.length === 0;
-  const tasksCount = tasks.length;
 
   return (
     <div>
@@ -75,12 +84,18 @@ export function App() {
           <div className={styles.todoStatus}>
             <div>
               <p>Tarefas criadas</p>
-              <strong>0</strong>
+              <strong>{taskCount}</strong>
             </div>
 
             <div>
               <p>Concluidas</p>
-              <strong>0</strong>
+              <strong>
+                {taskCount > 0 ?
+                  (`${completedTasks} de ${taskCount}`)
+                :
+                  0
+                }
+              </strong>
             </div>
           </div>
         </div>
